@@ -1,0 +1,17 @@
+input {
+    stdin {}
+}
+
+filter { 
+  grok { 
+    match => { "message" => "%{COMBINEDAPACHELOG}"}
+  }
+  date {
+    match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z" ]
+    target => "timestamp"
+  }
+}
+
+output {
+  stdout { codec => rubydebug }
+}

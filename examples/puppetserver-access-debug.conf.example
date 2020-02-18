@@ -1,0 +1,23 @@
+input {
+    stdin {}
+}
+
+filter { 
+  grok {
+    match => { "message" => 
+      "%{COMBINEDAPACHELOG}"
+      }
+    }
+    date {
+        match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z" ]
+        timezone => "America/Detroit"
+        target => "timestamp"
+    }
+    mutate {
+      add_field => { "log_source" => "puppetserveraccess"}
+    }
+}
+
+output {
+  stdout { codec => rubydebug }
+}
