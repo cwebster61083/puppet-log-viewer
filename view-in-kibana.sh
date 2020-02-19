@@ -106,15 +106,15 @@ function load_logs_puppetserver() {
   find "$datadir" -name "*puppetserver.log" -print0 | xargs cat | nc localhost 5000
 }
 
-# function load_logs_puppet_server_access() {
-#   echo ""
-#   echo "Loading Puppet Server Access Logs..."
-#   echo "Sleeping for 10 seconds."
-#   sleep 10
-#   echo $datadir
-#   echo ""
-#   find "$datadir" -name "*puppetserver-access.log" -print0 | xargs cat | nc localhost 5002
-# }
+function load_logs_puppet_server_access() {
+  echo ""
+  echo "Loading Puppet Server Access Logs..."
+  echo "Sleeping for 10 seconds."
+  sleep 10
+  echo $datadir
+  echo ""
+  find "$datadir" -name "*puppetserver-access.log" -print0 | xargs cat | nc localhost 5002
+}
 
 function finish() {
   docker-compose down --volumes
@@ -139,12 +139,12 @@ validate_elasticsearch_up
 validate_logstash_up
 validate_kibana_up
 create_logstash_index
-create_dashboard
+# create_dashboard
 
 cat <<EOF
 
 Elastic Search is ready! View at http://127.0.0.1:9200
-Kibana dashboard is ready! View at http://127.0.0.1:5601/app/kibana#/dashboard/8ee60c60-5294-11ea-b58f-058fc0a5660d?_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-90d%2Cto%3Anow))
+Kibana dashboard is ready! View at http://127.0.0.1:5601
 
 Username: elastic
 Password: changeme
@@ -153,7 +153,7 @@ Press enter key to exit...
 EOF
 
 load_logs_puppetserver
-#load_logs_puppet_server_access
+load_logs_puppet_server_access
 
 # Use _ as a throwaway variable
 read -r _
