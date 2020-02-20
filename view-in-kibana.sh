@@ -106,6 +106,16 @@ function load_logs_puppetserver() {
   find "$datadir" -name "*puppetserver.log" -print0 | xargs cat | nc localhost 5000
 }
 
+function load_logs_console_service_api_access() {
+  echo ""
+  echo "Loading Console Services API Access Logs..."
+  echo "Sleeping for 10 seconds."
+  sleep 10
+  echo $datadir
+  echo ""
+  find "$datadir" -name "*console-services-api-access.log" -print0 | xargs cat | nc localhost 5001
+}
+
 function load_logs_puppet_server_access() {
   echo ""
   echo "Loading Puppet Server Access Logs..."
@@ -153,6 +163,7 @@ Press enter key to exit...
 EOF
 
 load_logs_puppetserver
+load_logs_console_service_api_access
 load_logs_puppet_server_access
 
 # Use _ as a throwaway variable

@@ -43,6 +43,7 @@ services:
     ports:
       - "5000:5000/tcp"
       - "5000:5000/udp"
+      - "5001:5001/tcp"
       - "5002:5002/tcp"
       - "9600:9600"
     environment:
