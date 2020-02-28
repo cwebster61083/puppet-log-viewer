@@ -94,6 +94,8 @@ function create_dashboard(){
     -H 'kbn-xsrf: true' \
     -u elastic:changeme \
     --form file=@dashboards/dashboard.ndjson
+  echo ""
+  echo "Puppet Server Dashboard: http://127.0.0.1:5601/app/kibana#/dashboard/751cdd20-58cc-11ea-baf6-a3aaaa7b3fdb?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow%2Fw%2Cto%3Anow%2Fw))"
 }
 
 function load_logs_puppetserver() {
@@ -149,7 +151,7 @@ validate_elasticsearch_up
 validate_logstash_up
 validate_kibana_up
 create_logstash_index
-# create_dashboard
+create_dashboard
 
 cat <<EOF
 
