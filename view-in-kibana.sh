@@ -128,7 +128,7 @@ function load_logs_puppet_server_access() {
   find "$datadir" -name "*puppetserver-access.log" -print0 | xargs cat | nc localhost 5002
 }
 
-function load_logs_puppeted_access() {
+function load_logs_puppetdb_access() {
   echo ""
   echo "Loading PuppetDB Access Logs..."
   echo "Sleeping for 10 seconds."
@@ -177,7 +177,7 @@ EOF
 load_logs_puppetserver
 load_logs_console_service_api_access
 load_logs_puppet_server_access
-load_logs_puppeted_access
+load_logs_puppetdb_access
 
 # Use _ as a throwaway variable
 read -r _
