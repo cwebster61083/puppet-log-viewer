@@ -130,7 +130,7 @@ function load_logs_puppet_server_access() {
 
 function load_logs_puppeted_access() {
   echo ""
-  echo "Loading PuppetDD Access Logs..."
+  echo "Loading PuppetDB Access Logs..."
   echo "Sleeping for 10 seconds."
   sleep 10
   echo $datadir
@@ -177,6 +177,7 @@ EOF
 load_logs_puppetserver
 load_logs_console_service_api_access
 load_logs_puppet_server_access
+load_logs_puppeted_access
 
 # Use _ as a throwaway variable
 read -r _
