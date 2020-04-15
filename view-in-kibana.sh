@@ -105,7 +105,7 @@ function load_logs_puppetserver() {
   sleep 10
   echo $datadir
   echo ""
-  find "$datadir" -name "*puppetserver.log" -print0 | xargs cat | nc localhost 5000
+  find "$datadir" -name "*puppetserver.log" -print0 | xargs -0 cat | nc localhost 5000
 }
 
 function load_logs_console_service_api_access() {
@@ -115,7 +115,7 @@ function load_logs_console_service_api_access() {
   sleep 10
   echo $datadir
   echo ""
-  find "$datadir" -name "*console-services-api-access.log" -print0 | xargs cat | nc localhost 5001
+  find "$datadir" -name "*console-services-api-access.log" -print0 | xargs -0 cat | nc localhost 5001
 }
 
 function load_logs_puppet_server_access() {
@@ -125,7 +125,7 @@ function load_logs_puppet_server_access() {
   sleep 10
   echo $datadir
   echo ""
-  find "$datadir" -name "*puppetserver-access.log" -print0 | xargs cat | nc localhost 5002
+  find "$datadir" -name "*puppetserver-access.log" -print0 | xargs -0 cat | nc localhost 5002
 }
 
 function finish() {
