@@ -135,7 +135,7 @@ function load_logs_puppetdb_access() {
   sleep 10
   echo $datadir
   echo ""
-  find "$datadir" -name "puppetdb-access.log" -print0 | xargs cat | nc localhost 5003
+  find "$datadir" -name "puppetdb-access.log" -print0 | xargs -0 cat | nc localhost 5003
 }
 
 function finish() {
