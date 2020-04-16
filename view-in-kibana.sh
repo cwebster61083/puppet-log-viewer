@@ -128,6 +128,16 @@ function load_logs_puppet_server_access() {
   find "$datadir" -name "*puppetserver-access.log" -print0 | xargs -0 cat | nc localhost 5002
 }
 
+function load_logs_puppetdb_access() {
+  echo ""
+  echo "Loading PuppetDB Access Logs..."
+  echo "Sleeping for 10 seconds."
+  sleep 10
+  echo $datadir
+  echo ""
+  find "$datadir" -name "puppetdb-access.log" -print0 | xargs cat | nc localhost 5003
+}
+
 function finish() {
   docker-compose down --volumes
 }
@@ -167,6 +177,7 @@ EOF
 load_logs_puppetserver
 load_logs_console_service_api_access
 load_logs_puppet_server_access
+load_logs_puppetdb_access
 
 # Use _ as a throwaway variable
 read -r _
