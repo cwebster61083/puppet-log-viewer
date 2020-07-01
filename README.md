@@ -1,6 +1,6 @@
 # puppet-log-viewer
 
-Puppet Log Viewer is project for standing up an [ELK](https://www.elastic.co/what-is/elk-stack) stack in Docker and shipping Puppet support script logs for analysis.
+Puppet Log Viewer is a project for standing up an [ELK](https://www.elastic.co/what-is/elk-stack) stack in Docker and shipping Puppet support script logs for analysis.
 
 It utlizes the [docker-elk](https://github.com/deviantony/docker-elk) for creating the three Docker containers that compoise a dasic [ELK](https://www.elastic.co/what-is/elk-stack) stack. For addtional documentation please refer to [Elastic_Stack_on_Docker.md](Elastic_Stack_on_Docker.md) for additional details.
 
@@ -33,8 +33,8 @@ You can then view the kibana dashboard by visiting `http://localhost:5601` in a 
 - Username: `elastic`
 - Password: `changeme`
 
-Once your are finished run `docker-compose down --volumes` to destroy the environment.
+Once you are finished run `docker-compose down --volumes` to destroy the environment.
 
 ## Logstash Filters
 
-The configs files used by logstash for filtering log files can be found in `./logstash/pipelines`
+The configs files used by Logstash for filtering log files can be found in `./logstash/pipelines`
