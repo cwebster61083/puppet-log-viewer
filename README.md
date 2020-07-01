@@ -1,28 +1,40 @@
 # puppet-log-viewer
 
-This repository contains a command line tool for generating visualizations of your Puppet metrics data in Docker.
+Puppet Log Viewer is project for standing up an [ELK](https://www.elastic.co/what-is/elk-stack) stack in Docker and shipping Puppet support script logs for analysis.
 
-It assumes you have collected the metrics using the puppetlabs/puppet_metrics_collector module.
-
-It downloads a script from that module, and Grafana dashboards from the puppetlabs/puppet_metrics_dashboard module.
-
-Puppet Log Viewer is project for standing up an ELK stack in Docker and shipping Puppet support script logs for analysis.
-
-It utlizes https://github.com/deviantony/docker-elk
+It utlizes the [docker-elk](https://github.com/deviantony/docker-elk) for creating the three Docker containers that compoise a dasic [ELK](https://www.elastic.co/what-is/elk-stack) stack. For addtional documentation please refer to [Elastic_Stack_on_Docker.md](Elastic_Stack_on_Docker.md) for additional details.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+- Verify that [Docker](https://www.docker.com/) is installed. This can be done by running `docker --version`.
 
-```bash
-pip install foobar
+- Verify that [Docker Compose](https://docs.docker.com/compose/) is installed. This can be done by running `docker-compose --version`
+
+- Verify that [Git](https://git-scm.com/) is installed. This can be done by running `git --version`
+
+- Clone this project to your local workstation with the following.
+
+``` shell
+git clone https://github.com/cwebster61083/puppet-log-viewer.git
 ```
 
 ## Usage
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+To use this tool run `view-in-kibana.sh` passing it the directory containing the log files to be loaded.
 
-Please make sure to update tests as appropriate.
+For example:
 
-## License
+```
+./view-in-kibana.sh ~/Downloads/puppet_enterprise_support/
+```
+
+You can then view the kibana dashboard by visiting `http://localhost:5601` in a web browser.
+
+- Username: `elastic`
+- Password: `changeme`
+
+Once your are finished run `docker-compose down --volumes` to destroy the environment.
+
+## Logstash Filters
+
+The configs files used by logstash for filtering log files can be found in `./logstash/pipelines`
