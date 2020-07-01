@@ -14,7 +14,7 @@ It utlizes the [docker-elk](https://github.com/deviantony/docker-elk) for creati
 
 - Clone this project to your local workstation with the following.
 
-``` shell
+```bash
 git clone https://github.com/cwebster61083/puppet-log-viewer.git
 ```
 
@@ -24,7 +24,7 @@ To use this tool run `view-in-kibana.sh` passing it the directory containing the
 
 For example:
 
-```
+```bash
 ./view-in-kibana.sh ~/Downloads/puppet_enterprise_support/
 ```
 
