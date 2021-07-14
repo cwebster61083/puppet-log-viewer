@@ -174,10 +174,10 @@ Password: changeme
 Press enter key to exit...
 EOF
 
-# load_logs_puppetserver
-# load_logs_console_service_api_access
-# load_logs_puppet_server_access
-# load_logs_puppetdb_access
+load_logs_puppetserver
+load_logs_console_service_api_access
+load_logs_puppet_server_access
+load_logs_puppetdb_access
 
 # Use _ as a throwaway variable
 read -r _

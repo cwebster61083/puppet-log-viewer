@@ -38,3 +38,46 @@ Once you are finished run `docker-compose down --volumes` to destroy the environ
 ## Logstash Filters
 
 The configs files used by Logstash for filtering log files can be found in `./logstash/pipelines`
+
+## Manualy Running Import
+
+```
+client_name='costco'
+host_name='lappum01094p01'
+destination='elastic.puppetdebug.vlan'
+port='5000'
+
+files=$(gfind ./ -regextype sed -regex '.*logs.*puppetserver.log' -o -regex '.*logs.*puppetserver-[0-9].*[gz]')
+
+for file in $files; do
+    printf 'Processing: %s\n' "${file}" >&2
+
+    case "$(basename "${file}")" in
+      *.gz)
+        read_cmd='gunzip -c'
+        ;;
+      *.log)
+        read_cmd='cat'
+        ;;
+    esac
+
+  echo "$read_cmd $file | awk -v c=$client_name -v h=$host_name '$1 = $1 FS c FS h' | nc $destination $port"
+  $read_cmd $file | awk -v c=$client_name -v h=$host_name '$1 = $1 FS c FS h' | nc $destination $port
+
+done
+```
+
+## Checking existing indexes:
+
+```bash
+elastic_host="10.234.5.168"
+curl -XGET "http://$elastic_host:9200/_cat/indices"
+```
+
+## Delete an index
+
+```
+elastic_host="10.234.5.168"
+client_index="client-duke-energy-2021.01.07"
+curl -X DELETE "$elastic_host:9200/$client_index?pretty"
+```
